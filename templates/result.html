@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="body">
+    <h1 class="heading">Result</h1>
+    <p class="text">State: {{ state }}</p>
+    <p class="text">Accuracy: {{ accuracy }}</p>
+    <h2 class="sub-heading">Districts Ranked by Safety for Women:</h2>
+    <ul class="list">
+        {% for index, row in districts.iterrows() %}
+        <li class="list-item">{{ row['District'] }} - Safety Rank: {{ row['Safety Rank'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

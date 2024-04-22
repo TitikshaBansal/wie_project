@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="body">
+    <h1 class="heading">Crime Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="state" class="label">Enter State Name:</label>
+        <input type="text" id="state" name="state" class="input" required>
+        <button type="submit" class="button">Predict</button>
+    </form>
+</body>
+</html>
