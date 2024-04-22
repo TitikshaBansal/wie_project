@@ -38,8 +38,11 @@ def predict():
     # Get state name from form submission
     state_name = request.form['state']
 
-    # Filter data for the given state
-    state_data = data[data['STATE/UT'] == state_name]
+    # Convert the state name to lowercase for case-insensitive comparison
+    state_name_lower = state_name.lower()
+
+    # Filter data for the given state (case-insensitive)
+    state_data = data[data['STATE/UT'].str.lower() == state_name_lower]
 
     # Predict safety ranks for districts in the given state
     predicted_ranks = model.predict(state_data.drop(columns=['STATE/UT', 'DISTRICT']))
@@ -60,8 +63,11 @@ def crime_details():
     data = pd.read_csv("crime.csv")
     district_name = request.form['district']
 
-    # Filter data for the entered district
-    district_data = data[data['DISTRICT'] == district_name]
+    # Convert the district name to lowercase for case-insensitive comparison
+    district_name_lower = district_name.lower()
+
+    # Filter data for the entered district (case-insensitive)
+    district_data = data[data['DISTRICT'].str.lower() == district_name_lower]
 
     # Remove non-crime columns and sum the counts for each crime type
     crime_counts = district_data.drop(columns=['STATE/UT', 'DISTRICT']).sum()
