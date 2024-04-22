@@ -55,5 +55,22 @@ def predict():
 
     return render_template('result.html', state=state_name, districts=ranked_districts, accuracy=accuracy)
 
+@app.route('/crime_details', methods=['POST'])
+def crime_details():
+    data = pd.read_csv("crime.csv")
+    district_name = request.form['district']
+
+    # Filter data for the entered district
+    district_data = data[data['DISTRICT'] == district_name]
+
+    # Remove non-crime columns and sum the counts for each crime type
+    crime_counts = district_data.drop(columns=['STATE/UT', 'DISTRICT']).sum()
+
+    # Convert the crime counts to a dictionary
+    crime_counts_dict = crime_counts.to_dict()
+
+    return render_template('crime_details.html', district=district_name, crime_counts=crime_counts_dict)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
