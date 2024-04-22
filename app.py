@@ -9,6 +9,15 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/district')
+def district():
+    # Add logic to handle district related requests
+    return render_template('district.html')
+
+@app.route('/state')
+def state():
+    # Add logic to handle state related requests
+    return render_template('state.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
