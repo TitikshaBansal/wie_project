@@ -18,6 +18,7 @@ def district():
 def state():
     # Add logic to handle state related requests
     return render_template('state.html')
+    
 
 @app.route('/predict', methods=['POST'])
 def predict():
